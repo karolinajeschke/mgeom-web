@@ -123,12 +123,13 @@
   .about-intro { max-width: 820px; }
   .about h2 { margin-bottom: 24px; }
   .about-intro p { font-size: 20px; line-height: 1.6; }
-  .about-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gutter); margin-top: 72px; }
+  .about-stats { display: flex; flex-wrap: wrap; gap: 24px; margin-top: 56px; }
   .stat {
     background: var(--white); box-shadow: var(--shadow);
-    border-bottom: 4px solid var(--primary); padding: 28px 32px;
+    border-bottom: 4px solid var(--primary); padding: 22px 28px;
   }
-  .stat-num { display: block; font-size: 52px; line-height: 1; font-weight: 600; color: var(--primary); margin-bottom: 10px; }
+  .stat-num { display: block; font-size: 42px; line-height: 1; font-weight: 600; color: var(--primary); margin-bottom: 8px; }
+  .stat-label { font-size: 15px; }
   .stat-label { color: var(--ink); font-weight: 500; }
 
   /* ---------- Section head (title left, controls right) ---------- */
@@ -244,7 +245,8 @@
     .header.open .menu-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
     .contact-grid { grid-template-columns: 1fr; }
     .contact-card { border-right: 0; border-bottom: 1px solid var(--line); }
-    .about-stats { grid-template-columns: 1fr; gap: 16px; }
+    .about-stats { gap: 16px; }
+    .stat { flex: 1 1 100%; }
     .about-intro p { font-size: 18px; }
     .cta .container { flex-direction: column; text-align: center; }
     .footer-contacts { grid-template-columns: 1fr; }
