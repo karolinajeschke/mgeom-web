@@ -44,7 +44,7 @@
   h3 { font-size: 24px; line-height: 1.5; }
   p { margin: 0; }
 
-  .container { max-width: var(--container); margin: 0 auto; padding: 0 24px; }
+  .container { max-width: var(--container); margin: 0 auto; padding: 0 48px; }
   .section { padding: 160px 0 144px; }
   .bg-neutral { background: var(--neutral-200); }
   .subtitle { display: block; margin-bottom: 8px; color: var(--primary); font-weight: 600; }
@@ -98,9 +98,10 @@
   .hero {
     position: relative; min-height: 72vh; display: flex; align-items: center;
     padding: 64px 0; color: var(--white);
-    background: linear-gradient(90deg, rgba(237,85,33,.92) 0%, rgba(237,85,33,.78) 55%, rgba(237,85,33,.60) 100%),
+    background: linear-gradient(90deg, rgba(237,85,33,.46) 0%, rgba(237,85,33,.39) 55%, rgba(237,85,33,.30) 100%),
                 url('https://cdn.prod.website-files.com/67bb5b0a6ed0be37fca348a0/67d99cbf9bf76b6344f3c9e4_uvodni.jpg') center / cover no-repeat;
   }
+  .hero .container { width: 100%; }
   .hero h1 { color: var(--white); max-width: 640px; margin-bottom: 24px; }
   .hero p { max-width: 595px; margin-bottom: 48px; }
 
