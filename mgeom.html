@@ -119,18 +119,19 @@
   .contact-card .u-link::after { background: var(--ink); }
 
   /* ---------- About ---------- */
-  .about { padding: 72px 0 140px; }
-  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+  .about { padding: 72px 0; }
+  .about-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 72px; align-items: stretch; }
   .about h2 { margin-bottom: 24px; }
-  .about-img { position: relative; padding: 40px 40px 0 0; }
-  .about-img::before {
-    content: ''; position: absolute; top: 0; right: 0; width: 82%; height: 72%;
-    background: var(--primary); z-index: 0;
-  }
-  .about-img img { position: relative; z-index: 1; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+  .about-img { position: relative; }
+  .about-img img { position: absolute; top: 0; right: 0; width: 100%; max-width: 420px; height: 100%; object-fit: cover; box-shadow: var(--shadow); }
   .about-bio { margin-bottom: 28px; }
   .about-chips { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 32px; }
-  .chip { padding: 8px 16px; background: var(--primary-tint); color: var(--primary); font-size: 15px; font-weight: 500; }
+  .chip {
+    display: inline-flex; align-items: center; gap: 9px;
+    padding: 10px 18px; background: var(--white); border: 1px solid var(--line);
+    color: var(--ink); font-size: 15px; font-weight: 500;
+  }
+  .chip::before { content: ''; width: 6px; height: 6px; background: var(--primary); }
   .about-person strong { display: block; color: var(--ink); font-size: 18px; }
   .about-person span { color: var(--body); font-size: 16px; }
 
@@ -248,6 +249,7 @@
     .contact-grid { grid-template-columns: 1fr; }
     .contact-card { border-right: 0; border-bottom: 1px solid var(--line); }
     .about-grid { grid-template-columns: 1fr; gap: 56px; }
+    .about-img img { position: static; margin: 0 auto; max-width: 440px; height: auto; aspect-ratio: 4 / 5; }
     .cta .container { flex-direction: column; text-align: center; }
     .footer-contacts { grid-template-columns: 1fr; }
     .footer-contact { border-right: 0; border-bottom: 1px solid #474747; }
