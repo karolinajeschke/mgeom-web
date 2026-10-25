@@ -45,7 +45,7 @@
   p { margin: 0; }
 
   .container { max-width: var(--container); margin: 0 auto; padding: 0 48px; }
-  .section { padding: 160px 0 144px; }
+  .section { padding: 144px 0; }
   .bg-neutral { background: var(--neutral-200); }
   .subtitle { display: block; margin-bottom: 8px; color: var(--primary); font-weight: 600; }
 
@@ -82,6 +82,8 @@
   }
   /* the source SVGs already contain the orange square — let them fill the tile */
   .icon-tile img { width: 100%; height: 100%; }
+  /* inline line-icons sit as a white glyph on the orange tile */
+  .icon-tile svg { width: 26px; height: 26px; fill: none; stroke: var(--white); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
 
   /* ---------- Header ---------- */
   .header { position: sticky; top: 0; z-index: 50; background: var(--white); }
@@ -106,7 +108,7 @@
   .hero p { max-width: 595px; margin-bottom: 48px; }
 
   /* ---------- Contact section (before footer) ---------- */
-  .contact-strip { position: relative; z-index: 2; padding: 160px 0 144px; }
+  .contact-strip { position: relative; z-index: 2; padding: 144px 0; }
   .contact-grid { display: grid; grid-template-columns: repeat(3, 1fr); background: var(--white); box-shadow: var(--shadow); }
   .contact-card { display: flex; gap: 24px; padding: 48px 40px; border-right: 1px solid var(--line); }
   .contact-card:last-child { border-right: 0; background: var(--primary); color: var(--white); }
@@ -118,18 +120,52 @@
   .contact-card .u-link { font-size: 16px; color: var(--ink); }
   .contact-card .u-link::after { background: var(--ink); }
 
-  /* ---------- About ---------- */
-  .about { padding: 72px 0 140px; }
-  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+  /* ---------- About (two O nás variants, switchable) ---------- */
+  .about { padding: 144px 0; }
   .about h2 { margin-bottom: 24px; }
-  .about-img { position: relative; width: 80%; margin-left: auto; padding: 40px 40px 0 0; }
-  .about-img::before {
-    content: ''; position: absolute; top: 0; right: 0; width: 82%; height: 72%;
-    background: var(--primary); z-index: 0;
-  }
-  .about-img img { position: relative; z-index: 1; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+  .about-bio { margin-bottom: 28px; }
+
+  /* only the active variant is shown; switch sets body[data-onas] */
+  .about-grid { display: none; }
+  body[data-onas="v1"] .about-grid.v1 { display: grid; }
+  body[data-onas="v2"] .about-grid.v2 { display: grid; }
+
+  /* Variant 1 — quote + orange block behind photo */
+  .about-grid.v1 { grid-template-columns: 1.15fr 0.85fr; gap: 72px; align-items: stretch; }
+  .about-grid.v1 .about-img { position: relative; }
+  .about-grid.v1 .about-img img { position: absolute; top: 0; right: 0; width: 100%; max-width: 420px; height: 100%; object-fit: cover; box-shadow: var(--shadow); }
   .about-quote { font-style: normal; }
   .about-author { display: block; margin-top: 16px; color: var(--ink); font-weight: 500; }
+
+  /* Variant 2 — profile with chips, photo height matched to text */
+  .about-grid.v2 { grid-template-columns: 1.15fr 0.85fr; gap: 72px; align-items: stretch; }
+  .about-grid.v2 .about-img { position: relative; }
+  .about-grid.v2 .about-img img { position: absolute; top: 0; right: 0; width: 100%; max-width: 420px; height: 100%; object-fit: cover; box-shadow: var(--shadow); }
+  .about-chips { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 32px; }
+  .chip {
+    display: inline-flex; align-items: center; gap: 9px;
+    padding: 10px 18px; background: var(--white); border: 1px solid var(--line);
+    color: var(--ink); font-size: 15px; font-weight: 500;
+  }
+  .chip::before { content: ''; width: 6px; height: 6px; background: var(--primary); }
+  .about-person strong { display: block; color: var(--ink); font-size: 18px; }
+  .about-person span { color: var(--body); font-size: 16px; }
+
+  /* Floating variant switch (demo only — remove before final export) */
+  .variant-switch {
+    position: fixed; bottom: 24px; right: 24px; z-index: 100;
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 12px; background: var(--white);
+    border: 1px solid var(--line); box-shadow: 0 8px 24px rgba(0,0,0,.12);
+  }
+  .variant-switch span { font-size: 13px; font-weight: 600; color: var(--ink); }
+  .variant-switch button {
+    padding: 8px 14px; border: 1px solid var(--line); background: var(--white);
+    color: var(--ink); font: inherit; font-size: 14px; font-weight: 500; cursor: pointer;
+    transition: background .2s, color .2s, border-color .2s;
+  }
+  .variant-switch button:hover { border-color: var(--primary); }
+  .variant-switch button.is-active { background: var(--primary); border-color: var(--primary); color: var(--white); }
 
   /* ---------- Section head (title left, controls right) ---------- */
   .section-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; margin-bottom: 56px; }
@@ -161,11 +197,11 @@
   .service-body { position: relative; flex: 1; display: flex; flex-direction: column; padding: 0 32px 40px; }
   .service-body .icon-tile { width: 72px; height: 72px; margin: -36px 0 24px; }
   .service-body h3 { margin-bottom: 12px; }
-  .service-body p { margin-bottom: 24px; }
-  .service-body .u-link { margin-top: auto; align-self: flex-start; }
+  .service-body p { margin-bottom: 0; }
+  .service-body .icon-tile svg { width: 32px; height: 32px; }
 
   /* ---------- CTA band ---------- */
-  .cta { position: relative; overflow: hidden; padding: 143px 0; background: var(--primary); }
+  .cta { position: relative; overflow: hidden; padding: 144px 0; background: var(--primary); }
   .cta .container { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 32px; }
   .cta h2 { color: var(--white); }
   .cta-bg { position: absolute; bottom: 0; height: 100%; width: auto; opacity: .9; pointer-events: none; }
@@ -212,12 +248,7 @@
   .project-meta img { width: 20px; height: 20px; }
 
   /* ---------- Footer ---------- */
-  .footer { padding-top: 90px; background: var(--ink); color: var(--body); }
-  .footer-contacts { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid #474747; }
-  .footer-contact { display: flex; align-items: center; gap: 24px; padding: 32px 48px; border-right: 1px solid #474747; }
-  .footer-contact:last-child { border-right: 0; }
-  .footer-contact strong { display: block; color: var(--white); font-weight: 600; }
-  .footer-contact span { font-size: 16px; color: #B9B9B9; }
+  .footer { background: var(--ink); color: var(--body); }
   .footer-main { display: grid; grid-template-columns: 1.2fr 1fr 1.2fr; gap: 48px; padding: 72px 0; }
   .footer-logo img { height: 44px; width: auto; margin-bottom: 16px; }
   .footer-tagline { max-width: 220px; color: var(--white); font-size: 16px; line-height: 1.6; }
@@ -233,8 +264,7 @@
   @media (max-width: 991px) {
     h1 { font-size: 46px; line-height: 1.3; }
     h2 { font-size: 34px; }
-    .section { padding: 120px 0 112px; }
-    .about { padding: 120px 0; }
+    .section, .about, .contact-strip, .cta { padding: 112px 0; }
     .nav { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; gap: 0; background: var(--white); border-top: 1px solid var(--line); box-shadow: 0 12px 24px rgba(0,0,0,.06); }
     .nav a { padding: 18px 24px; border-bottom: 1px solid var(--line); }
     .header.open .nav { display: flex; }
@@ -244,11 +274,9 @@
     .header.open .menu-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
     .contact-grid { grid-template-columns: 1fr; }
     .contact-card { border-right: 0; border-bottom: 1px solid var(--line); }
-    .about-grid { grid-template-columns: 1fr; gap: 56px; }
+    .about-grid.v1, .about-grid.v2 { grid-template-columns: 1fr; gap: 56px; }
+    .about-grid.v1 .about-img img, .about-grid.v2 .about-img img { position: static; margin: 0 auto; max-width: 440px; height: auto; aspect-ratio: 4 / 5; }
     .cta .container { flex-direction: column; text-align: center; }
-    .footer-contacts { grid-template-columns: 1fr; }
-    .footer-contact { border-right: 0; border-bottom: 1px solid #474747; }
-    .footer-contact:last-child { border-bottom: 0; }
     .footer-main { grid-template-columns: 1fr 1fr; }
     .services-grid { grid-template-columns: repeat(2, 1fr); }
   }
@@ -260,10 +288,7 @@
     .header .container { height: 90px; }
     .logo img, .footer-logo img { height: 36px; }
     .hero { padding: 96px 0 96px; }
-    .contact-strip { padding: 96px 0 88px; }
-    .section { padding: 96px 0 88px; }
-    .about { padding: 96px 0; }
-    .cta { padding: 96px 0; }
+    .section, .about, .contact-strip, .cta { padding: 88px 0; }
     .section-head { flex-direction: column; align-items: flex-start; margin-bottom: 40px; }
     .services-grid { grid-template-columns: 1fr; }
     .project-card { flex-basis: 82%; }
@@ -280,11 +305,10 @@
     .contact-card { padding: 32px 24px; }
     .service-body, .project-body { padding-left: 24px; padding-right: 24px; }
     .slider-arrow { width: 60px; height: 60px; }
-    .footer-contact { padding: 24px; }
   }
 </style>
 </head>
-<body>
+<body data-onas="v1">
 
 <header class="header" id="top">
   <div class="container">
@@ -316,14 +340,35 @@
   </section>
 
   <section class="about" id="o-nas">
-    <div class="container about-grid">
+    <!-- Variant 1 — quote + orange block behind photo -->
+    <div class="container about-grid v1">
       <div>
-        <span class="subtitle">O nás</span>
         <h2>20 let zkušeností z oboru, s každodenní prací v terénu</h2>
         <blockquote class="about-quote" style="margin:0">
           <p>„Jsem specialista v oboru geodézie s více než 20 lety odborné praxe. Svou práci stavím na profesionalitě, preciznosti a vysoké kvalitě poskytovaných služeb. Díky dlouholetým zkušenostem nabízím spolehlivá a přesná geodetická měření a komplexní řešení v souladu s platnou legislativou i specifickými požadavky klienta. Zajišťuji vytyčování pozemků a staveb, vyhotovení geometrických plánů a další geodetické služby s důrazem na maximální odbornost a spolehlivost.“</p>
-          <cite class="about-author" style="font-style:normal">— Miroslav Marinčič, jednatel</cite>
+          <cite class="about-author">— Miroslav Marinčič, jednatel</cite>
         </blockquote>
+      </div>
+      <div class="about-img">
+        <img src="https://cdn.prod.website-files.com/67bb5b0a6ed0be37fca348a0/67e1439b3cd02997378057b2_miroslav.jpg" alt="Miroslav Marinčič při měření v terénu">
+      </div>
+    </div>
+
+    <!-- Variant 2 — profile with chips -->
+    <div class="container about-grid v2">
+      <div>
+        <h2>20 let zkušeností z oboru, s každodenní prací v terénu</h2>
+        <p class="about-bio">Jsem specialista v oboru geodézie s více než 20 lety odborné praxe. Svou práci stavím na profesionalitě, preciznosti a vysoké kvalitě poskytovaných služeb. Nabízím spolehlivá a přesná měření a komplexní řešení v souladu s platnou legislativou i specifickými požadavky klienta.</p>
+        <div class="about-chips">
+          <span class="chip">Geodet</span>
+          <span class="chip">20+ let praxe</span>
+          <span class="chip">Osobní přístup</span>
+          <span class="chip">Komplexní služby</span>
+        </div>
+        <div class="about-person">
+          <strong>Miroslav Marinčič</strong>
+          <span>jednatel společnosti MGeom s.r.o.</span>
+        </div>
       </div>
       <div class="about-img">
         <img src="https://cdn.prod.website-files.com/67bb5b0a6ed0be37fca348a0/67e1439b3cd02997378057b2_miroslav.jpg" alt="Miroslav Marinčič při měření v terénu">
@@ -337,8 +382,7 @@
     <div class="container">
       <div class="section-head">
         <div>
-          <span class="subtitle">Nabídka služeb</span>
-          <h2>Komplexní soubor služeb pro vás</h2>
+          <h2>Nabídka služeb</h2>
         </div>
       </div>
 
@@ -346,55 +390,60 @@
         <a href="#sluzby" class="service-card" role="listitem">
           <div class="service-img"><img src="https://cdn.prod.website-files.com/67bb5b0b6ed0be37fca34911/67f3f92f814739c6bc2ba977_DTM.jpg" alt=""></div>
           <div class="service-body">
-            <div class="icon-tile"><img src="https://cdn.prod.website-files.com/67bb5b0b6ed0be37fca34911/67bb5b0b6ed0be37fca34a4d_icon-1-services-construction-x-template.svg" alt=""></div>
+            <div class="icon-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2Z"/><path d="M9 4v14M15 6v14"/></svg></div>
             <h3>Digitální technická mapa kraje (DTM)</h3>
-            <p>Zpracování geodetické aktualizační dokumentace (GAD), aktualizace základní prostorové situace (ZPS) pro kolaudaci.</p>          </div>
+            <p>Zpracování geodetické aktualizační dokumentace (GAD), aktualizace základní prostorové situace (ZPS) pro kolaudaci.</p>
+          </div>
         </a>
         <a href="#sluzby" class="service-card" role="listitem">
           <div class="service-img"><img src="https://cdn.prod.website-files.com/67bb5b0b6ed0be37fca34911/67e43f616dc5aa03d612f650_geometrak%20-%20kopie.jpg" alt=""></div>
           <div class="service-body">
-            <div class="icon-tile"><img src="https://cdn.prod.website-files.com/67bb5b0b6ed0be37fca34911/67bb5b0b6ed0be37fca34a56_icon-4-services-construction-x-template.svg" alt=""></div>
+            <div class="icon-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H7a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V7l-4-4Z"/><path d="M14 3v4h4"/><path d="M9 12.5h6M9 16.5h4"/></svg></div>
             <h3>Geometrický plán</h3>
-            <p>Vyhotovení plánu pro rozdělení a změnu hranic pozemků, vyznačení a změnu obvodu budovy, vymezení věcného břemene.</p>          </div>
+            <p>Vyhotovení plánu pro rozdělení a změnu hranic pozemků, vyznačení a změnu obvodu budovy, vymezení věcného břemene.</p>
+          </div>
         </a>
         <a href="#sluzby" class="service-card" role="listitem">
           <div class="service-img"><img src="https://cdn.prod.website-files.com/67bb5b0b6ed0be37fca34911/67bb5b0b6ed0be37fca34a4f_thumbnail-2-services-construction-x-template.jpg" alt=""></div>
           <div class="service-body">
-            <div class="icon-tile"><img src="https://cdn.prod.website-files.com/67bb5b0b6ed0be37fca34911/67bb5b0b6ed0be37fca34a50_icon-2-services-construction-x-template.svg" alt=""></div>
+            <div class="icon-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7"/><path d="M12 1.5V5M12 19v3.5M1.5 12H5M19 12h3.5"/><circle cx="12" cy="12" r="1.4" fill="#fff" stroke="none"/></svg></div>
             <h3>Geodetické zaměření pro projekční práce</h3>
-            <p>Pasport staveb, polohopis a výškopis pozemku pro projektování nové nemovitosti a tras inženýrských sítí.</p>          </div>
+            <p>Pasport staveb, polohopis a výškopis pozemku pro projektování nové nemovitosti a tras inženýrských sítí.</p>
+          </div>
         </a>
         <a href="#sluzby" class="service-card" role="listitem">
           <div class="service-img"><img src="https://cdn.prod.website-files.com/67bb5b0b6ed0be37fca34911/67e4430cc53a972162a6150e_site2%20-%20kopie.jpg" alt=""></div>
           <div class="service-body">
-            <div class="icon-tile"><img src="https://cdn.prod.website-files.com/67bb5b0b6ed0be37fca34911/67e443b41dc32a7c8013b1e7_67bb5b0b6ed0be37fca34994_icon-3-contact-links-construction-x-template.svg" alt=""></div>
+            <div class="icon-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="6" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="12" cy="18" r="2"/><path d="M7 6h10M6.3 7.7 10.7 16.3M17.7 7.7 13.3 16.3"/></svg></div>
             <h3>Geodetické zaměření tras inženýrských sítí</h3>
-            <p>Geodetické zaměření tras inženýrských sítí.</p>          </div>
+            <p>Geodetické zaměření tras inženýrských sítí.</p>
+          </div>
         </a>
         <a href="#sluzby" class="service-card" role="listitem">
           <div class="service-img"><img src="https://cdn.prod.website-files.com/67bb5b0b6ed0be37fca34911/67bb5b0b6ed0be37fca34a52_thumbnail-3-services-construction-x-template.jpg" alt=""></div>
           <div class="service-body">
-            <div class="icon-tile"><img src="https://cdn.prod.website-files.com/67bb5b0b6ed0be37fca34911/67bb5b0b6ed0be37fca34a53_icon-3-services-construction-x-template.svg" alt=""></div>
+            <div class="icon-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6.5-5.8 6.5-10.5a6.5 6.5 0 1 0-13 0C5.5 15.2 12 21 12 21Z"/><circle cx="12" cy="10.5" r="2.3"/></svg></div>
             <h3>Vytyčení</h3>
-            <p>Vytyčení hranic pozemků dle aktuální katastrální mapy, vytyčení RD a jiných staveb, trasy inženýrských sítí.</p>          </div>
+            <p>Vytyčení hranic pozemků dle aktuální katastrální mapy, vytyčení RD a jiných staveb, trasy inženýrských sítí.</p>
+          </div>
         </a>
         <a href="#sluzby" class="service-card" role="listitem">
           <div class="service-img"><img src="https://cdn.prod.website-files.com/67bb5b0b6ed0be37fca34911/67f00d367adbf418f996aa0f_inz%CC%8Ceny%CC%81ring.jpg" alt=""></div>
           <div class="service-body">
-            <div class="icon-tile"><img src="https://cdn.prod.website-files.com/67bb5b0b6ed0be37fca34911/67f00d971ba58c155d7217ce_inzenyring.svg" alt=""></div>
+            <div class="icon-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5H6.5a1 1 0 0 0-1 1V20a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1H15"/><path d="M9 4h6v3H9V4Z"/><path d="m9 13.5 2 2 4-4.5"/></svg></div>
             <h3>Inženýring</h3>
-            <p>Vyřízení dělení a scelení pozemků se stavebním úřadem. Vyplnění potřebných formulářů pro zápis do KN.</p>          </div>
+            <p>Vyřízení dělení a scelení pozemků se stavebním úřadem. Vyplnění potřebných formulářů pro zápis do KN.</p>
+          </div>
         </a>
       </div>
     </div>
   </section>
 
-  <section class="section bg-neutral" id="projekty">
+  <section class="section" id="projekty">
     <div class="container">
       <div class="section-head">
         <div>
-          <span class="subtitle">Realizované projekty</span>
-          <h2>Podívejte se na výsledky naší práce</h2>
+          <h2>Realizované projekty</h2>
         </div>
         <div class="slider-arrows">
           <button class="slider-arrow" data-dir="-1" aria-label="Předchozí projekt"><svg viewBox="0 0 24 24"><path d="M15 4 7 12l8 8"/></svg></button>
@@ -429,7 +478,7 @@
     </div>
   </section>
 
-  <section class="contact-strip" id="kontakt">
+  <section class="contact-strip bg-neutral" id="kontakt">
     <div class="container">
       <div class="section-head">
         <div>
@@ -469,21 +518,6 @@
 
 <footer class="footer">
   <div class="container">
-    <div class="footer-contacts">
-      <a href="tel:+420605551059" class="footer-contact">
-        <div class="icon-tile"><img src="https://cdn.prod.website-files.com/67bb5b0a6ed0be37fca348a0/67bb5b0b6ed0be37fca34961_icon-1-footer-contact-links-construction-x-template.svg" alt=""></div>
-        <div><strong>Telefon</strong><span>+420 605 551 059</span></div>
-      </a>
-      <a href="mailto:mgeom@mgeom.cz" class="footer-contact">
-        <div class="icon-tile"><img src="https://cdn.prod.website-files.com/67bb5b0a6ed0be37fca348a0/67bb5b0b6ed0be37fca34962_icon-2-footer-contact-links-construction-x-template.svg" alt=""></div>
-        <div><strong>E-mail</strong><span>mgeom@mgeom.cz</span></div>
-      </a>
-      <div class="footer-contact">
-        <div class="icon-tile"><img src="https://cdn.prod.website-files.com/67bb5b0a6ed0be37fca348a0/67bb5b0b6ed0be37fca34963_icon-3-footer-contact-links-construction-x-template.svg" alt=""></div>
-        <div><strong>Sídlo firmy</strong><span>Do Lipan 477/20, 103 00, Praha 10</span></div>
-      </div>
-    </div>
-
     <div class="footer-main">
       <div>
         <a href="#top" class="footer-logo"><img src="https://cdn.prod.website-files.com/67bb5b0a6ed0be37fca348a0/67dc6fda9769d6397119bc78_Artboard%203.png" alt="mgeom.cz"></a>
@@ -508,7 +542,30 @@
   <div class="footer-bottom">Copyright © MGeom s.r.o. | Designed by <a href="#top">IT - Hospital</a></div>
 </footer>
 
+<!-- Demo-only switch for the two O nás variants — remove this block before final export -->
+<div class="variant-switch" role="group" aria-label="Verze sekce O nás">
+  <span>O nás:</span>
+  <button type="button" data-variant="v1">Verze 1</button>
+  <button type="button" data-variant="v2">Verze 2</button>
+</div>
+
 <script>
+  // O nás variant switch (demo only)
+  (function () {
+    const sw = document.querySelector('.variant-switch');
+    const params = new URLSearchParams(location.search);
+    const fromUrl = params.get('verze');
+    const setVariant = (v) => {
+      document.body.setAttribute('data-onas', v);
+      sw.querySelectorAll('button').forEach(b => b.classList.toggle('is-active', b.dataset.variant === v));
+    };
+    sw.addEventListener('click', (e) => {
+      const btn = e.target.closest('button');
+      if (btn) setVariant(btn.dataset.variant);
+    });
+    setVariant(fromUrl === '2' ? 'v2' : fromUrl === '1' ? 'v1' : document.body.getAttribute('data-onas') || 'v1');
+  })();
+
   // Mobile menu
   const header = document.querySelector('.header');
   const toggle = document.querySelector('.menu-toggle');
