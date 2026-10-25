@@ -9,3 +9,49 @@ content:
         type: string
       - name: body
         type: rich-text
+
+        content:
+  - name: posts
+    label: Posts
+    type: collection
+    path: content/posts
+    fields:
+      - name: title
+        type: string
+      - name: body
+        type: rich-text
+    actions:
+      - name: rebuild-posts
+        label: Rebuild posts
+        scope: collection
+        workflow: pages-cms-collection-action.yml
+
+      - name: preview-post
+        label: Preview
+        scope: entry
+        workflow: pages-cms-entry-action.yml
+
+        content:
+  - name: site
+    label: Site settings
+    type: file
+    path: data/site.yml
+    fields:
+      - name: title
+        type: string
+      - name: description
+        type: text
+    actions:
+      - name: validate-config
+        label: Validate config
+        workflow: pages-cms-file-action.yml
+
+        content:
+  - name: posts
+    type: collection
+    path: content/posts
+    fields:
+      - name: title
+        type: string
+      - name: body
+        type: rich-text
