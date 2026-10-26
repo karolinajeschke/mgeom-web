@@ -1,17 +1,18 @@
 # MGeom.cz — handoff
 
-Single-file static site (`mgeom.html`) rebuilt from https://www.mgeom.cz/.
+Static site rebuilt from https://www.mgeom.cz/: homepage `index.html`, two project
+pages in `subpages/`, one shared stylesheet `css/style.css`, images in `images/`.
 Currently set up for a **client A/B review of the "O nás" (About) section**: the page
 contains two switchable variants with a floating demo switch. Everything else on the
 page exists once and is shared between both variants.
 
 ## Preview locally
 
-From this folder:
+From the project folder (the one with `index.html`, not `docs/`):
 
 ```bash
 python3 -m http.server 8788
-# then open http://localhost:8788/mgeom.html
+# then open http://localhost:8788/
 ```
 
 ## The "O nás" A/B toggle
@@ -56,12 +57,14 @@ Ask Claude to do this in one step if preferred.
 
 ## TODO before production
 
-- **Replace hotlinked images** — all photos/logo are hotlinked from the original
-  `cdn.prod.website-files.com` (Webflow) and must be downloaded and served locally.
 - **Remove the demo variant switch** once the final O nás variant is chosen (see above).
 - Review copy/contact details with the client.
 
 ## Notes
 
 - No build step, no dependencies. One font loaded from fontshare (General Sans).
-- The `project/` folder holds the two detail pages linked from "Realizované projekty".
+- The `subpages/` folder holds the two detail pages linked from "Realizované projekty".
+- All images are local in `images/` (downloaded from Webflow), so nothing breaks when the
+  Webflow plan is cancelled. `images/` is 3.7 MB, mostly the two detailed survey plans
+  (`*-v.png`); converting them to WebP would roughly halve that.
+- Deploy only `index.html`, `subpages/`, `css/` and `images/`. `docs/` is working material.

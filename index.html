@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Inspiration rebuild of https://www.mgeom.cz/ — images hotlinked from the original site; replace before real use.
+     Services section: the original Webflow slider stacked all cards in slide 1; here it is one horizontal track. -->
+
+<title>MGeom s.r.o. - geodetické služby</title>
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="page-home" data-onas="v1">
+
+<header class="header" id="top">
+  <div class="container">
+    <a href="#top" class="logo"><img src="images/logo.png" alt="mgeom.cz"></a>
+    <div class="header-right">
+      <nav class="nav" aria-label="Hlavní menu">
+        <a href="#o-nas">O nás</a>
+        <a href="#sluzby">Služby</a>
+        <a href="#projekty">Reference</a>
+        <a href="#kontakt">Kontakt</a>
+      </nav>
+      <a href="#kontakt" class="btn btn-sm">Poptat cenu</a>
+      <button class="menu-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="container">
+      <h1>Měříme s přesností,<br>na které můžete stavět</h1>
+      <p>Profesionální geodetické služby pro přesné měření. Nabízíme vytyčování hranic, staveb, vyhotovení geometrických plánů, zaměření inženýrských sítí a další.</p>
+      <div class="btn-row">
+        <a href="#kontakt" class="btn btn-white">Získat nabídku</a>
+        <a href="#sluzby" class="btn btn-ghost-white">Naše služby</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="o-nas">
+    <!-- Variant 1 — quote + orange block behind photo -->
+    <div class="container about-grid v1">
+      <div>
+        <h2>20 let zkušeností z oboru, s každodenní prací v terénu</h2>
+        <blockquote class="about-quote" style="margin:0">
+          <p>„Jsem specialista v oboru geodézie s více než 20 lety odborné praxe. Svou práci stavím na profesionalitě, preciznosti a vysoké kvalitě poskytovaných služeb. Díky dlouholetým zkušenostem nabízím spolehlivá a přesná geodetická měření a komplexní řešení v souladu s platnou legislativou i specifickými požadavky klienta. Zajišťuji vytyčování pozemků a staveb, vyhotovení geometrických plánů a další geodetické služby s důrazem na maximální odbornost a spolehlivost.“</p>
+          <cite class="about-author">— Miroslav Marinčič, jednatel</cite>
+        </blockquote>
+      </div>
+      <div class="about-img">
+        <img src="images/miroslav.jpg" alt="Miroslav Marinčič při měření v terénu">
+      </div>
+    </div>
+
+    <!-- Variant 2 — profile with chips -->
+    <div class="container about-grid v2">
+      <div>
+        <h2>20 let zkušeností z oboru, s každodenní prací v terénu</h2>
+        <p class="about-bio">Jsem specialista v oboru geodézie s více než 20 lety odborné praxe. Svou práci stavím na profesionalitě, preciznosti a vysoké kvalitě poskytovaných služeb. Nabízím spolehlivá a přesná měření a komplexní řešení v souladu s platnou legislativou i specifickými požadavky klienta.</p>
+        <div class="about-chips">
+          <span class="chip">Geodet</span>
+          <span class="chip">20+ let praxe</span>
+          <span class="chip">Osobní přístup</span>
+          <span class="chip">Komplexní služby</span>
+        </div>
+        <div class="about-person">
+          <strong>Miroslav Marinčič</strong>
+          <span>jednatel společnosti MGeom s.r.o.</span>
+        </div>
+      </div>
+      <div class="about-img">
+        <img src="images/miroslav.jpg" alt="Miroslav Marinčič při měření v terénu">
+      </div>
+    </div>
+  </section>
+
+  <!-- Services: originally a Webflow slider whose first slide held the whole (unlimited) CMS list,
+       so all cards stacked vertically. Rebuilt as a single horizontal scroll-snap track. -->
+  <section class="section bg-neutral" id="sluzby">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2>Nabídka služeb</h2>
+        </div>
+      </div>
+
+      <div class="services-grid" role="list">
+        <a href="#sluzby" class="service-card" role="listitem">
+          <div class="service-img"><img src="images/dtm.jpg" alt=""></div>
+          <div class="service-body">
+            <div class="icon-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2Z"/><path d="M9 4v14M15 6v14"/></svg></div>
+            <h3>Digitální technická mapa kraje (DTM)</h3>
+            <p>Zpracování geodetické aktualizační dokumentace (GAD), aktualizace základní prostorové situace (ZPS) pro kolaudaci.</p>
+          </div>
+        </a>
+        <a href="#sluzby" class="service-card" role="listitem">
+          <div class="service-img"><img src="images/geometrak.jpg" alt=""></div>
+          <div class="service-body">
+            <div class="icon-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H7a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V7l-4-4Z"/><path d="M14 3v4h4"/><path d="M9 12.5h6M9 16.5h4"/></svg></div>
+            <h3>Geometrický plán</h3>
+            <p>Vyhotovení plánu pro rozdělení a změnu hranic pozemků, vyznačení a změnu obvodu budovy, vymezení věcného břemene.</p>
+          </div>
+        </a>
+        <a href="#sluzby" class="service-card" role="listitem">
+          <div class="service-img"><img src="images/thumbnail-2-services.jpg" alt=""></div>
+          <div class="service-body">
+            <div class="icon-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7"/><path d="M12 1.5V5M12 19v3.5M1.5 12H5M19 12h3.5"/><circle cx="12" cy="12" r="1.4" fill="#fff" stroke="none"/></svg></div>
+            <h3>Geodetické zaměření pro projekční práce</h3>
+            <p>Pasport staveb, polohopis a výškopis pozemku pro projektování nové nemovitosti a tras inženýrských sítí.</p>
+          </div>
+        </a>
+        <a href="#sluzby" class="service-card" role="listitem">
+          <div class="service-img"><img src="images/site2.jpg" alt=""></div>
+          <div class="service-body">
+            <div class="icon-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="6" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="12" cy="18" r="2"/><path d="M7 6h10M6.3 7.7 10.7 16.3M17.7 7.7 13.3 16.3"/></svg></div>
+            <h3>Geodetické zaměření tras inženýrských sítí</h3>
+            <p>Geodetické zaměření tras inženýrských sítí.</p>
+          </div>
+        </a>
+        <a href="#sluzby" class="service-card" role="listitem">
+          <div class="service-img"><img src="images/thumbnail-3-services.jpg" alt=""></div>
+          <div class="service-body">
+            <div class="icon-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6.5-5.8 6.5-10.5a6.5 6.5 0 1 0-13 0C5.5 15.2 12 21 12 21Z"/><circle cx="12" cy="10.5" r="2.3"/></svg></div>
+            <h3>Vytyčení</h3>
+            <p>Vytyčení hranic pozemků dle aktuální katastrální mapy, vytyčení RD a jiných staveb, trasy inženýrských sítí.</p>
+          </div>
+        </a>
+        <a href="#sluzby" class="service-card" role="listitem">
+          <div class="service-img"><img src="images/inzenyring.jpg" alt=""></div>
+          <div class="service-body">
+            <div class="icon-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5H6.5a1 1 0 0 0-1 1V20a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1H15"/><path d="M9 4h6v3H9V4Z"/><path d="m9 13.5 2 2 4-4.5"/></svg></div>
+            <h3>Inženýring</h3>
+            <p>Vyřízení dělení a scelení pozemků se stavebním úřadem. Vyplnění potřebných formulářů pro zápis do KN.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="projekty">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2>Realizované projekty</h2>
+        </div>
+        <div class="slider-arrows">
+          <button class="slider-arrow" data-dir="-1" aria-label="Předchozí projekt"><svg viewBox="0 0 24 24"><path d="M15 4 7 12l8 8"/></svg></button>
+          <button class="slider-arrow" data-dir="1" aria-label="Další projekt"><svg viewBox="0 0 24 24"><path d="m9 4 8 8-8 8"/></svg></button>
+        </div>
+      </div>
+      <div class="projects-track slider-track" role="list">
+        <a class="project-card" href="subpages/repy-verejne-osvetleni.html" role="listitem">
+          <div class="project-img"><img src="images/repy-dsps.png" alt="Zaměření veřejného osvětlení Řepy" loading="lazy"></div>
+          <div class="project-body">
+            <h3>Řepy - veřejné osvětlení</h3>
+            <p>Zaměření průběhu trasy veřejného osvětlení včetně stožárů a příprava podkladu pro dokumentaci skutečného provedení</p>
+            <div class="project-meta"><img src="images/icon-4-projects-service.svg" alt="">Mar 2025</div>
+          </div>
+        </a>
+        <a class="project-card" href="subpages/obec-ponikla-rd.html" role="listitem">
+          <div class="project-img"><img src="images/ponikla-tach.png" alt="Polohopis a výškopis Poniklá" loading="lazy"></div>
+          <div class="project-body">
+            <h3>Obec Poniklá - RD</h3>
+            <p>Zaměření polohopisu a výškopisu pro projekční práce na rodinný dům v obci Poniklá</p>
+            <div class="project-meta"><img src="images/icon-4-projects-service.svg" alt="">Mar 2025</div>
+          </div>
+        </a>
+        <a class="project-card is-cta" href="mailto:mgeom@mgeom.cz" role="listitem">
+          <span class="project-cta-plus">+</span>
+          <h3>Váš projekt?</h3>
+          <p>Dejte nám vědět a vaši realizaci rádi přidáme mezi naše reference.</p>
+          <span class="u-link">Získat nabídku</span>
+          <span class="project-cta-email">mgeom@mgeom.cz</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-strip bg-neutral" id="kontakt">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <span class="subtitle">Kontakt</span>
+          <h2>Ozvěte se nám</h2>
+        </div>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-card">
+          <div class="icon-tile"><img src="images/icon-2-home-contact-links.svg" alt=""></div>
+          <div>
+            <h2>Telefon</h2>
+            <p>+420 605 551 059</p>
+            <a href="tel:+420605551059" class="u-link">Poptávka služeb</a>
+          </div>
+        </div>
+        <div class="contact-card">
+          <div class="icon-tile"><img src="images/icon-1-home-contact-links.svg" alt=""></div>
+          <div>
+            <h2>E-mail</h2>
+            <p>mgeom@mgeom.cz</p>
+            <a href="mailto:mgeom@mgeom.cz" class="u-link">Nacenění a objednávka</a>
+          </div>
+        </div>
+        <div class="contact-card">
+          <div class="icon-tile"><img src="images/icon-3-home-contact-links.svg" alt=""></div>
+          <div>
+            <h2>Sídlo firmy</h2>
+            <p>Do Lipan 477/20, 103 00, Praha 10 - Kolovraty</p>
+            <a href="https://maps.google.com/?q=Do+Lipan+477/20+Praha+10" target="_blank" rel="noopener" class="u-link">Zobrazit v mapách</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-main">
+      <div>
+        <a href="#top" class="footer-logo"><img src="images/logo-footer.png" alt="mgeom.cz"></a>
+        <p class="footer-tagline">Měříme s přesností, na které můžete stavět</p>
+      </div>
+      <div>
+        <h4>Menu</h4>
+        <ul class="footer-menu">
+          <li><a href="#o-nas">O nás</a></li>
+          <li><a href="#sluzby">Služby</a></li>
+        </ul>
+      </div>
+      <div class="footer-company">
+        MGeom s.r.o.<br>
+        Miroslav Marinčič - jednatel<br>
+        IČ: 22653449<br>
+        Do Lipan 477/20, Kolovraty, 10300
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">Copyright © MGeom s.r.o. | Designed by <a href="#top">IT - Hospital</a></div>
+</footer>
+
+<!-- Demo-only switch for the two O nás variants — remove this block before final export -->
+<div class="variant-switch" role="group" aria-label="Verze sekce O nás">
+  <span>O nás:</span>
+  <button type="button" data-variant="v1">Verze 1</button>
+  <button type="button" data-variant="v2">Verze 2</button>
+</div>
+
+<script>
+  // O nás variant switch (demo only)
+  (function () {
+    const sw = document.querySelector('.variant-switch');
+    const params = new URLSearchParams(location.search);
+    const fromUrl = params.get('verze');
+    const setVariant = (v) => {
+      document.body.setAttribute('data-onas', v);
+      sw.querySelectorAll('button').forEach(b => b.classList.toggle('is-active', b.dataset.variant === v));
+    };
+    sw.addEventListener('click', (e) => {
+      const btn = e.target.closest('button');
+      if (btn) setVariant(btn.dataset.variant);
+    });
+    setVariant(fromUrl === '2' ? 'v2' : fromUrl === '1' ? 'v1' : document.body.getAttribute('data-onas') || 'v1');
+  })();
+
+  // Mobile menu
+  const header = document.querySelector('.header');
+  const toggle = document.querySelector('.menu-toggle');
+  toggle.addEventListener('click', () => {
+    const open = header.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open);
+  });
+  document.querySelectorAll('.nav a').forEach(a => a.addEventListener('click', () => header.classList.remove('open')));
+
+  // Sliders (services + projects): arrows scroll the track by one card; disable at the ends
+  document.querySelectorAll('.slider-track').forEach(track => {
+    const arrows = track.closest('section').querySelectorAll('.slider-arrow');
+    if (arrows.length < 2) return;
+    const step = () => {
+      const card = track.firstElementChild;
+      return card.getBoundingClientRect().width + parseFloat(getComputedStyle(track).columnGap || 0);
+    };
+    const updateArrows = () => {
+      const max = track.scrollWidth - track.clientWidth - 2;
+      arrows[0].disabled = track.scrollLeft <= 2;
+      arrows[1].disabled = track.scrollLeft >= max;
+    };
+    arrows.forEach(btn => btn.addEventListener('click', () => {
+      track.scrollBy({ left: step() * Number(btn.dataset.dir), behavior: 'smooth' });
+    }));
+    track.addEventListener('scroll', updateArrows, { passive: true });
+    window.addEventListener('resize', updateArrows);
+    updateArrows();
+  });
+</script>
+</body>
+</html>
